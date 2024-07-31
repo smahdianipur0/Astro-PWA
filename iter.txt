@@ -1,0 +1,150 @@
+iter
+
+SW
+
+const CACHE = "pwabuilder-offline";
+
+importScripts('third_party/workbox/workbox-v7.1.0/workbox-sw.js');
+
+workbox.setConfig({
+  modulePathPrefix:'third_party/workbox/workbox-v7.1.0',
+})
+
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
+});
+
+workbox.routing.registerRoute(
+  new RegExp('/*'),
+  new workbox.strategies.StaleWhileRevalidate({
+    cacheName: CACHE
+  })
+);
+    <script> if (typeof navigator.serviceWorker !== 'undefined') {navigator.serviceWorker.register('/sw.js')}</script>
+
+
+save in url
+
+
+const params: URLSearchParams = new URLSearchParams(window.location.search);
+
+function updateURL(): void {
+    params.set(
+        "theme",
+        (document.getElementById("theme-toggle")! as HTMLInputElement).checked.toString(),);
+
+      params.set(
+      "checkbox-two",
+      (document.getElementById("bar")! as HTMLInputElement).checked.toString(),);
+
+    window.history.replaceState({}, "", `${window.location.pathname}?${params}`);
+}
+
+function getCheckboxState(id: string): boolean {
+    return params.get(id) === "true";
+}
+
+const checkboxElementOne: HTMLInputElement = document.getElementById(
+    "theme-toggle",
+) as HTMLInputElement;
+checkboxElementOne.checked = getCheckboxState("theme");
+checkboxElementOne.addEventListener("change", updateURL);
+
+const checkboxElementTwo: HTMLInputElement = document.getElementById(
+ "bar",
+ ) as HTMLInputElement;
+ checkboxElementTwo.checked = getCheckboxState("checkbox-two");
+ checkboxElementTwo.addEventListener("change", updateURL);
+
+
+
+
+
+
+
+
+
+
+
+
+function updateURLForRadios(): void {
+    if (document.querySelector('input[name="tab"]:checked')) {
+        params.set(
+            "tab",
+            (document.querySelector('input[name="tab"]:checked') as HTMLInputElement)
+                .id,
+        );
+    }
+    if (document.querySelector('input[name="another-tab"]:checked')) {
+        params.set(
+            "another-tab",
+            (
+                document.querySelector(
+                    'input[name="another-tab"]:checked',
+                ) as HTMLInputElement
+            ).id,
+        );
+    }
+
+    window.history.replaceState({}, "", `${window.location.pathname}?${params}`);
+}
+
+function setInitialRadioStates(): void {
+    const tabValue = params.get("tab");
+
+    if (tabValue) {
+        const tabRadioToCheck = document.querySelector(
+            `input[name="tab"][id="${tabValue}"]`,
+        ) as HTMLInputElement;
+        if (tabRadioToCheck) {
+            tabRadioToCheck.checked = true;
+        }
+    }
+
+    const anotherTabValue = params.get("another-tab");
+
+    if (anotherTabValue) {
+        const anotherTabRadioToCheck = document.querySelector(
+            `input[name="another-tab"][id="${anotherTabValue}"]`,
+        ) as HTMLInputElement;
+        if (anotherTabRadioToCheck) {
+            anotherTabRadioToCheck.checked = true;
+        }
+    }
+}
+
+setInitialRadioStates();
+
+const allTabRadios = document.querySelectorAll('input[name="tab"]');
+allTabRadios.forEach((radio) => {
+    radio.addEventListener("change", updateURLForRadios);
+});
+
+const allAnotherTabRadios = document.querySelectorAll(
+    'input[name="another-tab"]',
+);
+allAnotherTabRadios.forEach((radio) => {
+    radio.addEventListener("change", updateURLForRadios);
+});
+
+
+
+
+qr code
+
+
+createEffect(() => {
+   setResultE(encrypt(key(), iv(), plainText()));
+   document.getElementById("result_e")!.textContent = resultE();
+   if (resultE() === "") {
+      document.getElementById("result_e")!.textContent = "Enter Plain Text";
+   }
+   QRCode.toCanvas(
+      document.getElementById("eqr")!,
+      resultE(),
+      { width: 160, margin: 1 },
+      // function (error) { if (error) console.error(error);console.log("success!");},
+   );
+});

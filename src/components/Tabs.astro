@@ -1,0 +1,107 @@
+---
+interface Props {
+	name: string;	
+	tab1: string;
+	tab2: string;
+	content1: string;
+	content2: string;	
+}
+
+const {name, tab1 , tab2, content1, content2} = Astro.props;
+
+---
+<div style="display: flex;
+ flex-wrap: wrap;
+ position: relative;
+ justify-content: center;
+ align-items: center;">
+<input type="radio" class="tabs first-lable" name={name} id= {tab1} checked />
+<input type="radio" class="tabs second-lable" name={name} id= {tab2} />
+
+<div id={name} class="tab__indicator reflection glass"></div>
+
+<div class="tabs-content"  id= {content1} > 
+    <slot name="tab1"/>
+</div>
+
+<div class="tabs-content" id= {content2}> 
+    <slot name="tab2"/>
+
+</div>
+
+
+
+<style>
+
+
+.section{
+	display: flex;
+	 flex-wrap: wrap;
+	 position: relative;
+	 justify-content: center;
+	 align-items: center;
+}
+
+.tabs{
+	appearance: none;
+	-webkit-appearance: none;
+	border: none;
+	background-color: transparent;
+	font-size: var(--big-font);
+	display: grid;
+	height: var(--small-clickable);
+	line-height: var(--text-height);
+	width: 10ch;	
+	cursor: pointer; 
+	z-index: 2;
+	text-align: center;
+	justify-self: center;
+	align-items: center;
+	transition: color 200ms ease-out;
+	color: var(--focus-color);
+	margin-bottom: 2ch;
+}
+
+
+.tabs-content {
+    display: none;
+    width: 100%;
+}
+
+.tabs:checked.first-lable,
+.tabs:checked.second-lable{
+	color: var(--accent-color)
+}
+
+
+.tab__indicator {
+
+ font-size: var(--big-font);
+ width: 10ch;
+ position: relative;
+ display: inline-block;
+ justify-content: center;
+ align-items: center;
+ height: var(--small-clickable);
+ position: absolute;
+ top:0;
+ background: var(--tab-bg) ;
+ border-radius: var(--radus-c);
+ transition: transform 600ms cubic-bezier(0.02, 0.94, 0.09, 0.97), background 300ms cubic-bezier(0.17, 0.67, 0.14, 1.03);
+}
+
+
+
+
+/*  .tab input#one:checked ~ .tab__indicator { 
+	 transform: translate3d(-5ch, 0, 0);
+
+}
+
+ .tab input#two:checked ~ .tab__indicator {
+	 transform: translate3d(5ch, 0, 0);
+
+} */
+ 
+
+</style>

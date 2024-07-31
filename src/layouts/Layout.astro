@@ -1,79 +1,436 @@
 ---
+import Nav from '../components/Nav.astro';
 
-import { pwaInfo } from 'virtual:pwa-info';
-
-export interface Props {
+interface Props {
 	title: string;
 }
 
-
-// interface Props {
-// 	title: string;
-// }
-
 const { title } = Astro.props;
-
-
-
-
-
-
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta charset="UTF-8" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="gives you the tools to create secure passwords and encrypt them with AES without relying on anyone else" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#272727" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="KeyPass" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <link rel="icon" href="/favicon.png" />
+    <link rel="manifest" href="/manifest.json" />
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="splashscreens/iPhone_15_Pro_Max__iPhone_15_Plus__iPhone_14_Pro_Max_landscape.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="splashscreens/iPhone_15_Pro__iPhone_15__iPhone_14_Pro_landscape.png">
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="splashscreens/iPhone_14_Plus__iPhone_13_Pro_Max__iPhone_12_Pro_Max_landscape.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="splashscreens/iPhone_14__iPhone_13_Pro__iPhone_13__iPhone_12_Pro__iPhone_12_landscape.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="splashscreens/iPhone_13_mini__iPhone_12_mini__iPhone_11_Pro__iPhone_XS__iPhone_X_landscape.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="splashscreens/iPhone_11_Pro_Max__iPhone_XS_Max_landscape.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="splashscreens/iPhone_11__iPhone_XR_landscape.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="splashscreens/iPhone_8_Plus__iPhone_7_Plus__iPhone_6s_Plus__iPhone_6_Plus_landscape.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="splashscreens/iPhone_8__iPhone_7__iPhone_6s__iPhone_6__4.7__iPhone_SE_landscape.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="splashscreens/4__iPhone_SE__iPod_touch_5th_generation_and_later_landscape.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="splashscreens/12.9__iPad_Pro_landscape.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="splashscreens/11__iPad_Pro__10.5__iPad_Pro_landscape.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 820px) and (device-height: 1180px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="splashscreens/10.9__iPad_Air_landscape.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="splashscreens/10.5__iPad_Air_landscape.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="splashscreens/10.2__iPad_landscape.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="splashscreens/9.7__iPad_Pro__7.9__iPad_mini__9.7__iPad_Air__9.7__iPad_landscape.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 744px) and (device-height: 1133px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="splashscreens/8.3__iPad_Mini_landscape.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splashscreens/iPhone_15_Pro_Max__iPhone_15_Plus__iPhone_14_Pro_Max_portrait.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splashscreens/iPhone_15_Pro__iPhone_15__iPhone_14_Pro_portrait.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splashscreens/iPhone_14_Plus__iPhone_13_Pro_Max__iPhone_12_Pro_Max_portrait.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splashscreens/iPhone_14__iPhone_13_Pro__iPhone_13__iPhone_12_Pro__iPhone_12_portrait.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splashscreens/iPhone_13_mini__iPhone_12_mini__iPhone_11_Pro__iPhone_XS__iPhone_X_portrait.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splashscreens/iPhone_11_Pro_Max__iPhone_XS_Max_portrait.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="splashscreens/iPhone_11__iPhone_XR_portrait.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splashscreens/iPhone_8_Plus__iPhone_7_Plus__iPhone_6s_Plus__iPhone_6_Plus_portrait.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="splashscreens/iPhone_8__iPhone_7__iPhone_6s__iPhone_6__4.7__iPhone_SE_portrait.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="splashscreens/4__iPhone_SE__iPod_touch_5th_generation_and_later_portrait.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="splashscreens/12.9__iPad_Pro_portrait.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="splashscreens/11__iPad_Pro__10.5__iPad_Pro_portrait.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 820px) and (device-height: 1180px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="splashscreens/10.9__iPad_Air_portrait.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="splashscreens/10.5__iPad_Air_portrait.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="splashscreens/10.2__iPad_portrait.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="splashscreens/9.7__iPad_Pro__7.9__iPad_mini__9.7__iPad_Air__9.7__iPad_portrait.png" />
+    <link rel="apple-touch-startup-image" media="screen and (device-width: 744px) and (device-height: 1133px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="splashscreens/8.3__iPad_Mini_portrait.png" />
 
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
 
-		<meta name="msapplication-TileColor" content="#FFFFFF">
-   		<meta name="theme-color" content="#ffffff">
 
-		<title>{title}</title>
-
-		<link rel="manifest" href="/manifest.json">
-
-		 <script src="/src/pwa.ts"></script>
-    	{ pwaInfo && <Fragment set:html={pwaInfo.webManifest.linkTag} /> }
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <script is:inline > if (typeof navigator.serviceWorker !== 'undefined') {navigator.serviceWorker.register('sw.js')}</script>
 
 	</head>
-	<body>
-		<slot />
-	</body>
+  
+<body style="background: var(--bg-canv);
+border: .1px solid #0000;
+min-height: 100vh;
+transition: color .2s ease-out">
+
+  <Nav/>
+
+  <slot/>
+
+  <div id="toast" class="toast glass">
+    <span class="gg-check-o"/>
+    <span>&nbsp Copied</span>
+  </div>
+
+</body>
+
+
 </html>
+
 <style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
+
+:root {
+
+  font-family: system-ui;
+  --big-font: 128%;
+  --regular-font: 100%;
+  --extra-small-font: 78.125%;
+
+
+  --primary: oklch(0.65 0.142 268.67);
+  --primery-transparent: oklch(0.65 0.185 268.67 / 0.72);
+  --secondary: oklch(0.62 0.152 273.00);
+  --card-bg-color: linear-gradient(290deg, oklch(0.58742 0.17443 277.74) 0%, oklch(0.61088 0.16236 274.98) 65%, oklch(0.69733 0.125 261.28) 100%);
+  --drop-shadow: 0 0 5px oklch(0.65554 0.14152 268.67 / 0.7);
+  --light-reflection: oklch(1 0 0/ 0.25);
+  --success: oklch(64% 0.12 174);
+
+
+  --gap: 1ch;
+  --bigger-gap: 2ch;
+  --text-height: 2.4ch;
+  --small-clickable: 3.15ch;
+  --portion: 6ch;
+
+
+  --default-padding: 0.7ch 1.5ch;
+  --thin-padding: 0.2ch 1ch;
+
+
+  --radiu-a: 0.85ch;
+  --radiu-b: 2.1ch;
+  --radus-c: 2.5ch;
+
+  --z-layer-top: 4;
+  --z-layer-higher: 3;
+  --z-layer-middle: 2
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent
+}
+
+*,
+:after,
+:before {
+  box-sizing: border-box
+}
+
+html,
+body {
+  color: var(--accent-color);
+}
+
+input,
+button,
+label,
+textarea{
+  font-family: system-ui;
+}
+
+input{
+  accent-color: var(--primary);
+}
+
+textarea{
+  background-color: transparent; 
+  font-size: var(--regular-font);
+  font-family: inherit;
+  width: 100%;
+  padding: var(--default-padding);
+  display: inline-block;
+  border: 1px solid transparent;
+  border-radius: var(--radiu-a);
+  resize: vertical;
+  border-bottom: 1px solid var(--primary);
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  color: var(--accent-color);
+}
+
+
+textarea:focus {
+  border: 1px solid var(--primary);
+  border-radius: var(--radiu-a);
+  outline: none;
+}
+
+a {
+  text-decoration: none; 
+  height: 25px;
+  margin:10px var(--portion); 
+  margin: 100px;
+}
+
+.glass {
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px)
+}
+
+.reflection{
+  border: 0.2px solid oklch(0.84 0.078 273/ 0.6);
+  box-shadow: inset 0.6px 0.6px 0px 0px oklch(0.84 0.078 273/ 0.6), 
+                    1px   2px   2px 0px oklch(0 0 0 / 0.1) ;
+}
+
+.dent-shadow {
+  box-shadow: inset 0px 2px 5px oklch(0 0 0 / 0.2) , 
+                    0px 2px 2px oklch(1 0 0 / 0.1) , 
+                    0px 0px 1px 0.5px oklch(1 0 0 / 0.1) ;
+}
+
+.flex{
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1ch;
+}
+
+.skeleton{
+   font-size: inherit;
+   font-family: inherit;
+   height: 1.5ch;
+   width: 30ch;
+   margin: calc( (var(--text-height) - 1.5ch) / 2 ) 0;
+   border-radius: 4ch;
+   background-color: oklch(0.8 0 0 / 0.4);
+   background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, .5) 50%,
+    rgba(255, 255, 255, 0) 60%
+  ) oklch(0.8 0 0 / 0.4);
+  background-size: 200% 100%;
+  background-position-x: 180%;
+  animation: 1s loading ease-in-out infinite;
+
+}
+
+@keyframes loading {
+  to {
+    background-position-x: -20%;
+  }
+}
+
+.skeleton-parrent{
+  line-height: var(--text-height); 
+  overflow: hidden;
+}
+
+.card-bg{
+  height: 7.7125ch;
+  height: 8.032ch;
+  width: 100%  ;
+  position: absolute; 
+  margin: -2ch -2ch;
+  background: var(--card-bg-color);
+}
+
+
+.input {
+  background-color: var(--transparent-bg);
+  font-size: var(--regular-font);
+  padding: var(--default-padding);
+  width: 100%;
+  display: inline-block;
+  border: 1px solid transparent;
+  border-radius: var(--radiu-a);
+  border-bottom: 1px solid var(--primary);
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  color: var(--accent-color);
+}
+
+.input:focus {
+  border: 1px solid var(--primary);
+  border-radius: var(--radiu-a);
+  background-color:var(--select-color) ;
+  outline: none;
+}
+
+
+button.disabled , label.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: 1px 2.5px 0px var(--dark-shadow-disabled) ;
+}
+
+button.disabled::before , label.disabled::before ,
+button.disabled:active::before , label.disabled:active::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1; 
+  background-color: transparent;
+}
+
+
+.toast {
+ display: flex;
+ position: fixed; 
+ background-color: var(--transparent-bg);
+ border-radius: var(--radiu-b);
+ border: 1px solid  var(--main-border);
+ bottom: -100%;
+ width: 200px; 
+ left: calc(50% - 100px ); 
+ align-items: center;
+ justify-content: center;
+ padding: var(--default-padding);
+ box-sizing: border-box;
+ transition: bottom 0.15s ease-out;  
+ z-index: var(--z-layer-higher);
+ color: var(--success);
+}
+
+.gg-check-o {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  transform: scale(0.7);
+  width: 22px;
+  height: 22px;
+  border: 2px solid;
+  border-radius: 100px
+
+}
+
+.gg-check-o::after {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  left: 3px;
+  top: -1px;
+  width: 6px;
+  height: 10px;
+  border-color: currentColor;
+  border-width: 0 2px 2px 0;
+  border-style: solid;
+  transform-origin: bottom left;
+  transform: rotate(45deg)
+
+}
+
+#theme-toggle:before {
+  color:var(--accent-color);
+  content: 'Change Theme: ☀️';
+  display: block;
+  width: 20ch; 
+}
+
+:root:has(#theme-toggle:checked) #theme-toggle:before {
+  content: 'Change Theme: 🌙'; 
+}
+
+:root{
+  --bg-canv: linear-gradient(135deg, oklch(0.40 0 0) 0%, oklch(0.35 0 0) 14%, oklch(0.22 0 0) 100%);
+  --select-color: oklch(0.15 0 0);
+  --accent-color: oklch(0.99 0.005 197.00);
+  --focus-color: oklch(1 0 0 / 0.5);
+  --main-border: oklch(0.35 0 0);
+  --transparent-bg: oklch(0.1 0 0 / 0.45);
+  --slider-thumb-color: linear-gradient(oklch(0.22 0 0),oklch(0.34 0 0));
+  --input-bg-focus: linear-gradient(oklch(0.22 0 0 / 0.9),oklch(0.22 0 0 / 0.8));
+  --toggle-bg: oklch(0.22 0 0 );
+  --indent-bg: linear-gradient(oklch(0 0 0 / 0.8),oklch(0.19125 0 0 / 0.8));
+  --tab-bg: linear-gradient(290deg, oklch(0.085 0 0 / 0.5) 0%, oklch(0.085 0 0 / 0.4) 65%, oklch(0.085 0 0 / 0.35) 100%);
+  --glow: oklch(0.80 0 0);
+  --dark-shadow: oklch(0.32 0.2 268.67);
+  --dark-shadow-disabled: oklch(0.27 0.16 268.67);
+}
+
+:root:has(#theme-toggle:checked) {
+  --bg-canv: linear-gradient(135deg, oklch(0.90 0 0) 0%, oklch(0.83 0 0) 14%, oklch(0.80 0 0) 100%);
+  --tertiary-color: linear-gradient(oklch(0.90 0 0 / 0.8),oklch(1 0 0 / 0.8));
+  --select-color:oklch(0.96 0 0);
+  --accent-color: oklch(0 0 0);
+  --focus-color : oklch(0 0 0 / 0.5);
+  --focus-color-gradient : linear-gradient(oklch(0 0 0 / 0.4),oklch(0 0 0 / 0.3));
+  --main-border : oklch(0.82 0 0);
+  --transparent-bg: oklch(0.98 0 0 / 0.45);
+  --slider-thumb-color : linear-gradient(oklch(0.85 0 0),oklch(0.90 0 0));
+  --input-bg-focus:linear-gradient(oklch(0.89 0 0 / 0.8),oklch(0.89 0.0268 106.93 / 0.9));
+  --toggle-bg: oklch(0.95 0 0 );
+  --indent-bg: linear-gradient(oklch(0.90 0 0 / 0.8),oklch(1 0 0 / 0.8));
+  --tab-bg:linear-gradient(290deg, oklch(1 0 0 / 0.35) 0%, oklch(1 0 0 / 0.4) 65%, oklch(1 0 0 / 0.5) 100%);
+  --glow:oklch(1 0 268.67);
+  --dark-shadow: oklch(0.5 0.22 268.67);
+  --dark-shadow-disabled: oklch(0.62 0.18 268.67);
+}
+
+@media (prefers-color-scheme:light) {
+
+#theme-toggle:before {
+  color:var(--accent-color);
+  content: 'Change Theme: 🌙';
+  display: block;
+  width: 20ch;
+}
+
+:root:has(#theme-toggle:checked) #theme-toggle:before {
+  content: 'Change Theme: ☀️'; 
+}
+
+
+  :root{
+  --bg-canv: linear-gradient(135deg, oklch(0.90 0 0) 0%, oklch(0.83 0 0) 14%, oklch(0.80 0 0) 100%);
+  --tertiary-color: linear-gradient(oklch(0.90 0 0 / 0.8),oklch(1 0 0 / 0.8));
+  --select-color:oklch(0.96 0 0);
+  --accent-color: oklch(0 0 0);
+  --focus-color : oklch(0 0 0 / 0.5);
+  --focus-color-gradient : linear-gradient(oklch(0 0 0 / 0.4),oklch(0 0 0 / 0.3));
+  --main-border : oklch(0.82 0 0);
+  --transparent-bg: oklch(0.98 0 0 / 0.45);
+  --slider-thumb-color : linear-gradient(oklch(0.85 0 0),oklch(0.90 0 0));
+  --input-bg-focus:linear-gradient(oklch(0.89 0 0 / 0.8),oklch(0.89 0.0268 106.93 / 0.9));
+  --toggle-bg: oklch(0.95 0 0 );
+  --indent-bg: linear-gradient(oklch(0.90 0 0 / 0.8),oklch(1 0 0 / 0.8));
+  --tab-bg:linear-gradient(290deg, oklch(1 0 0 / 0.35) 0%, oklch(1 0 0 / 0.4) 65%, oklch(1 0 0 / 0.5) 100%);
+  --glow:oklch(1 0 268.67);
+  --dark-shadow: oklch(0.5 0.22 268.67);
+  --dark-shadow-disabled: oklch(0.62 0.18 268.67);
+  }
+
+  :root:has(#theme-toggle:checked) {
+  --bg-canv: linear-gradient(135deg, oklch(0.40 0 0) 0%, oklch(0.35 0 0) 14%, oklch(0.22 0 0) 100%);
+  --select-color: oklch(0.15 0 0);
+  --accent-color: oklch(0.99 0.005 197.00);
+  --focus-color: oklch(1 0 0 / 0.5);
+  --main-border: oklch(0.35 0 0);
+  --transparent-bg: oklch(0.1 0 0 / 0.45);
+  --slider-thumb-color: linear-gradient(oklch(0.22 0 0),oklch(0.34 0 0));
+  --input-bg-focus: linear-gradient(oklch(0.22 0 0 / 0.9),oklch(0.22 0 0 / 0.8));
+  --toggle-bg: oklch(0.22 0 0 );
+  --indent-bg: linear-gradient(oklch(0 0 0 / 0.8),oklch(0.19125 0 0 / 0.8));
+  --tab-bg: linear-gradient(290deg, oklch(0.085 0 0 / 0.5) 0%, oklch(0.085 0 0 / 0.4) 65%, oklch(0.085 0 0 / 0.35) 100%);
+  --glow: oklch(0.80 0 0);
+  --dark-shadow: oklch(0.32 0.2 268.67);
+  --dark-shadow-disabled: oklch(0.27 0.16 268.67);
+  }
+
+}
+
+
 </style>
