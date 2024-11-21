@@ -13,6 +13,17 @@ export default defineConfig({
   vite: {
     plugins: [wasm(), topLevelAwait()],
     css: { transformer: 'lightningcss' },
+    optimizeDeps: {
+    exclude: ['@surrealdb/wasm'],
+    esbuildOptions: {
+        target: 'esnext',
+    },
+},
+esbuild: {
+    supported: {
+        'top-level-await': true
+    },
+}
   },
   build: {
     assetsInlineLimit: 51200,

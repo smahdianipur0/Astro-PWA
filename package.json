@@ -12,9 +12,11 @@
   "dependencies": {
     "@astrojs/check": "^0.7.0",
     "@astrojs/solid-js": "^4.2.0",
+    "@surrealdb/wasm": "^1.0.2",
     "astro": "^4.8.4",
     "lightningcss": "^1.25.1",
     "solid-js": "^1.8.17",
+    "surrealdb": "^1.0.6",
     "typescript": "^5.4.5"
   },
   "devDependencies": {
