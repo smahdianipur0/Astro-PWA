@@ -1,4 +1,4 @@
-import { Surreal } from 'surrealdb';
+import { Surreal, RecordId } from 'surrealdb';
 import { surrealdbWasmEngines } from '@surrealdb/wasm';
 import { jsonify } from "surrealdb";
 
@@ -20,35 +20,50 @@ async function getDb(){
 
 
 
-interface User {
+interface PasswordEntry {
+  title: string;
   username: string;
-  email: string;
-  password: string;
 }
 
-async function createUser(): Promise<void> {
+export async function createPasswordEntry(title: string, username: string): Promise<void> {
   const db = await getDb();
   if (!db) {
     console.error("Database not initialized");
     return;
   }
   try {
-    const user = await db.create<User>("User", {
-      username: "newUser",
-      email: "user@example.com",
+    const entry = await db.create<PasswordEntry>("PasswordEntry", {
+      title,
+      username,
       password: "securePassword",
     });
-    console.log("User created:", jsonify(user));
-    const theuser = jsonify(user);
+    console.log("Password entry created:", jsonify(entry));
   } catch (err: unknown) {
-    console.error("Failed to create user:", err instanceof Error ? err.message : String(err));
+    console.error("Failed to create password entry:", err instanceof Error ? err.message : String(err));
   } finally {
     await db.close();
   }
 }
 
-createUser();
-export async function getAllUsers(): Promise<User[] | undefined> {  
+export async function deletePasswordEntry(id: string): Promise<void> {
+  const db = await getDb();
+  if (!db) {
+    console.error("Database not initialized");
+    return;
+  }
+  try {
+    await db.delete(new RecordId('PasswordEntry', id));
+    console.log("Password entry deleted:", id);
+  } catch (err: unknown) {
+    console.error("Failed to delete password entry:", err instanceof Error ? err.message : String(err));
+  } finally {
+    await db.close();
+  }
+}
+
+
+
+export async function getAllPasswordEntries(): Promise<PasswordEntry[] | undefined> {  
     const db = await getDb();  
 
     if (!db) {  
@@ -57,30 +72,14 @@ export async function getAllUsers(): Promise<User[] | undefined> {
     }  
 
     try {  
-        const users = await db.select<User>("User");  
-        console.log("All users:", jsonify(users));  
-        displayUsers(jsonify(users));  
-        return users;  
+        const entries = await db.select<PasswordEntry>("PasswordEntry");  
+        console.log("Retrieved entries:", entries);  
+        return entries;  
     } catch (err) {  
-        console.error("Failed to get users:", err);  
+        console.error("Failed to get password entries:", err);  
         return undefined;  
     } finally {  
         await db.close();  
     }  
 }  
-
-
-function displayUsers(users: User[]) {  
-    const container = document.createElement('div');  
-
-    users.forEach(user => {  
-        const pElement = document.createElement('p');   
-        pElement.textContent = `Email: ${user.email}, ID: ${user.id}, Username: ${user.username}`;  
-        container.appendChild(pElement);  
-    });  
-
-    document.body.appendChild(container);    
-}  
-
-getAllUsers();
  

@@ -2,6 +2,7 @@
 import Tabs from '../components/Tabs.astro';
 import RangeSlider from '../components/RangeSlider.astro';
 import ToggleGroup from '../components/ToggleGroup.astro';
+import Drawer from '../components/Drawer.tsx';
 
 ---
 
@@ -13,11 +14,12 @@ import ToggleGroup from '../components/ToggleGroup.astro';
        <ToggleGroup/>
 
         <div class="center" style="overflow: hidden;" >
+          <Drawer client:only/>
           <button  id = "gp" class=" unstyle-button copy" style="
           margin-top: var(--bigger-gap); margin-bottom: var(--bigger-gap); line-height: var(--text-height);">
             <div class = "skeleton" style="width:15ch"> </div> 
           </button>
-
+          
           <button  id = "redo" class=" unstyle-button redo_container" style="
             font-size:var(--big-font); font-weight: 300; 
             margin-top: var(--bigger-gap); margin-bottom: var(--bigger-gap);">↻

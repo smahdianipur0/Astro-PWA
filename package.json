@@ -12,6 +12,7 @@
   "dependencies": {
     "@astrojs/check": "^0.7.0",
     "@astrojs/solid-js": "^4.2.0",
+    "@corvu/drawer": "^0.2.2",
     "@surrealdb/wasm": "^1.0.2",
     "astro": "^4.8.4",
     "lightningcss": "^1.25.1",
