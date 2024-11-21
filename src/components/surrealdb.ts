@@ -37,7 +37,6 @@ export async function createPasswordEntry(title: string, username: string): Prom
       username,
       password: "securePassword",
     });
-    console.log("Password entry created:", jsonify(entry));
   } catch (err: unknown) {
     console.error("Failed to create password entry:", err instanceof Error ? err.message : String(err));
   } finally {
@@ -53,7 +52,6 @@ export async function deletePasswordEntry(id: string): Promise<void> {
   }
   try {
     await db.delete(new RecordId('PasswordEntry', id));
-    console.log("Password entry deleted:", id);
   } catch (err: unknown) {
     console.error("Failed to delete password entry:", err instanceof Error ? err.message : String(err));
   } finally {
@@ -73,7 +71,6 @@ export async function getAllPasswordEntries(): Promise<PasswordEntry[] | undefin
 
     try {  
         const entries = await db.select<PasswordEntry>("PasswordEntry");  
-        console.log("Retrieved entries:", entries);  
         return entries;  
     } catch (err) {  
         console.error("Failed to get password entries:", err);  

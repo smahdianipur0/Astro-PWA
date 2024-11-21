@@ -51,11 +51,10 @@
     height: 100%;
     max-height: 500px;
     flex-direction: column;
-    border-top-left-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
-    border-top-width: 4px;
-    border-color: hsl(258, 79%, 74%);
-    background-color: hsl(249, 87%, 14%);
+    
+    border-top-left-radius: var(--radiu-b);
+    border-top-right-radius:var(--radiu-b);
+    background-color: hsl(0, 0%, 0%);
     padding-top: 0.75rem;
   }
   
@@ -87,7 +86,7 @@
     width: 2.5rem;
     align-self: center;
     border-radius: 9999px;
-    background-color: hsl(258, 79%, 74%);
+    background-color: oklch(.58742 .17443 277.74);
   }
   
   [data-corvu-drawer-label] {
@@ -104,12 +103,9 @@
     text-align: center;
   }
   
-  .hidden_frog {
-    position: absolute;
-    left: 0px;
-    right: 0px;
-    bottom: -1.25rem;
-    z-index: 10;
-    text-align: center;
-    margin: 0px;
+
+  [data-corvu-drawer-close] {
+    width: 50px;
+    margin-left: auto;
+    margin-right: 1rem;
   }

@@ -20,10 +20,8 @@ const DrawerComponent: VoidComponent = () => {
       return
     }
     await createPasswordEntry(newTitle(), newUsername())
-    // Clear the inputs after adding
     setNewTitle('')
     setNewUsername('')
-    // Refresh the list
     const passwordEntries = await getAllPasswordEntries()
     setEntries(passwordEntries ?? [])
   }
@@ -49,7 +47,7 @@ const DrawerComponent: VoidComponent = () => {
             />
             <Drawer.Content>
               <div class="notch" />
-              <div id="drawer_content">
+              <Drawer.Close> close </Drawer.Close>         
                 <Drawer.Label>Password Entries</Drawer.Label>
                 
                 <div class="input-group">
@@ -66,7 +64,6 @@ const DrawerComponent: VoidComponent = () => {
                     onInput={(e) => setNewUsername(e.currentTarget.value)}
                   />
                   <button 
-                    id="add_db_button" 
                     onClick={handleAddEntry}
                     disabled={!newTitle() || !newUsername()}
                   >
@@ -75,9 +72,9 @@ const DrawerComponent: VoidComponent = () => {
                 </div>
                 
                 <div class="entries-list">
-                  <For each={[...entries()].reverse()}>
+                  <For each={[...entries()].reverse()} >
                     {(entry) => (
-                      <div class="entry-item">
+                      <div  class="entry-item">
                         <p>Title: {entry.title}</p>
                         <p>Username: {entry.username}</p>
                         <button 
@@ -90,9 +87,7 @@ const DrawerComponent: VoidComponent = () => {
                     )}
                   </For>
                 </div>
-              </div>
               <Drawer.Description>Drag down to close me.</Drawer.Description>
-              <p class="hidden_frog">🐸 You found froggy!</p>
             </Drawer.Content>
           </Drawer.Portal>
         </>
