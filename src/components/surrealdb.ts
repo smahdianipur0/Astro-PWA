@@ -20,12 +20,12 @@ async function getDb(){
 
 
 
-interface PasswordEntry {
+export type PasswordEntry = {
   title: string;
-  username: string;
+  password: string;
 }
 
-export async function createPasswordEntry(title: string, username: string): Promise<void> {
+export async function createPasswordEntry(title: string, password: string): Promise<void> {
   const db = await getDb();
   if (!db) {
     console.error("Database not initialized");
@@ -34,8 +34,7 @@ export async function createPasswordEntry(title: string, username: string): Prom
   try {
     const entry = await db.create<PasswordEntry>("PasswordEntry", {
       title,
-      username,
-      password: "securePassword",
+      password,
     });
   } catch (err: unknown) {
     console.error("Failed to create password entry:", err instanceof Error ? err.message : String(err));

@@ -1,31 +1,28 @@
 [data-corvu-drawer-trigger] {
-    border-width: 0;
-    cursor: pointer;
-    margin-top: auto;
-    margin-bottom: auto;
-    border-radius: 0.5rem;
-    background-color: hsl(251, 21%, 10%);
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-    font-weight: 500;
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 100ms;
-    animation-duration: 100ms;
+  place-content: center;
+  border: 1px solid oklch(1 0 0 /0.0);
+  border-radius: var(--radiu-a);
+  line-height: var(--text-height);
+  position: absolute;
+  left: 0ch;
+  background-color: transparent;
+  margin-top: var(--bigger-gap); 
+  margin-bottom: var(--bigger-gap); 
+  font-size: var(--big-font);
+  font-weight: 100;
+  height: 29px;
+  padding: var(--thin-padding);
+  border: 1px solid oklch(1 0 0 /0.0);
+  border-radius: var(--radiu-a);
+  line-height: var(--text-height);
   }
   
-  [data-corvu-drawer-trigger]:hover {
-    background-color: hsl(257, 14%, 10%);
-  }
-  
-  [data-corvu-drawer-trigger]:active {
-    transform: translate(0px, 0.125rem);
-  }
-  
+  [data-corvu-drawer-trigger]:focus,
+  [data-corvu-drawer-trigger]:hover{
+  border: 1px solid var(--main-border);
+}
+
+
   [data-corvu-drawer-overlay] {
     position: fixed;
     inset: 0px;
@@ -86,7 +83,7 @@
     width: 2.5rem;
     align-self: center;
     border-radius: 9999px;
-    background-color: oklch(.58742 .17443 277.74);
+    background-color: gray;
   }
   
   [data-corvu-drawer-label] {
@@ -108,4 +105,20 @@
     width: 50px;
     margin-left: auto;
     margin-right: 1rem;
+  }
+
+  .entries-list{
+    display: flex;
+    flex-direction: column;
+    
+
+  }
+  .entry-item{
+    display: flex;
+    place-content: space-between;
+    width: min(100%, 65ch);
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: var(--default-padding);
+    margin: 1ch;
   }
