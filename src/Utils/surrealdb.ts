@@ -21,7 +21,7 @@ async function getDb(){
 
 
 export type PasswordEntry = {
-  id: {tb: string, id: string};
+  id?: {tb: string, id: string};
   title: string;
   password: string;
 }
