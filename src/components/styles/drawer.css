@@ -107,18 +107,3 @@
     margin-right: 1rem;
   }
 
-  .entries-list{
-    display: flex;
-    flex-direction: column;
-    
-
-  }
-  .entry-item{
-    display: flex;
-    place-content: space-between;
-    width: min(100%, 65ch);
-    border: 1px solid gray;
-    border-radius: 10px;
-    padding: var(--default-padding);
-    margin: 1ch;
-  }
